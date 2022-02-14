@@ -40,4 +40,29 @@ public class PaddleController : MonoBehaviour
             this.rb2D.AddForce(this.direction * DEFAULT_SPEED);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        BallController ball = collision.gameObject.GetComponent<BallController>();
+
+        // Adds variable return angles for ball
+        if(ball != null)
+        {
+            Vector2 paddlePos = this.transform.position;
+            Vector2 contactPt = collision.GetContact(0).point;
+            float offset = paddlePos.x - contactPt.x;
+
+            // Half of total width of paddle (otherCollider)
+            float halfWidth = collision.otherCollider.bounds.size.x / 2;
+
+            // Find angle of ball using its rigidbody
+            // CHECK should this be here?
+            float curAngle = Vector2.SignedAngle(Vector2.up, ball.rb2D.velocity);
+            float bounceAngle = (offset / halfWidth) * MAX_BOUNCE_ANGLE;
+            float newAngle = Mathf.Clamp(curAngle + bounceAngle, -MAX_BOUNCE_ANGLE, MAX_BOUNCE_ANGLE);
+
+            Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
+            ball.rb2D.velocity = rotation * Vector2.up * ball.rb2D.velocity.magnitude;
+        }
+    }
 }

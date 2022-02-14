@@ -5,7 +5,7 @@ public class BallController : MonoBehaviour
 {
     private static float DEFAULT_SPEED = 1000f;
 
-    private Rigidbody2D rb2D;
+    public Rigidbody2D rb2D;
 
     private void Awake()
     {
