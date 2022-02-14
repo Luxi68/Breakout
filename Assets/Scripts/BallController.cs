@@ -27,10 +27,4 @@ public class BallController : MonoBehaviour
 
         this.rb2D.AddForce(force.normalized * DEFAULT_SPEED);
     }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
 }

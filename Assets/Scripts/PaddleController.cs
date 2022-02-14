@@ -4,6 +4,7 @@ using UnityEngine;
 public class PaddleController : MonoBehaviour
 {
     private static float DEFAULT_SPEED = 60f;
+    private static float MAX_BOUNCE_ANGLE = 75f;
 
     private Rigidbody2D rb2D;
     private Vector2 direction;
@@ -16,6 +17,7 @@ public class PaddleController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // Detect where the player is moving the paddle
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             this.direction = Vector2.left;
@@ -32,6 +34,7 @@ public class PaddleController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Move the paddle
         if(this.direction != Vector2.zero)
         {
             this.rb2D.AddForce(this.direction * DEFAULT_SPEED);
