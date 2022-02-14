@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PaddleController : MonoBehaviour
 {
-    private static float DEFAULT_SPEED = 30f;
+    private static float DEFAULT_SPEED = 60f;
 
     private Rigidbody2D rb2D;
     private Vector2 direction;
