@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Ball
+  - Solid Objects
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2806665737
+    locked: 0
+  - name: Bricks
+    uniqueID: 3523904965
+    locked: 0
+  - name: Drops
+    uniqueID: 1941797395
     locked: 0
