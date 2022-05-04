@@ -12,12 +12,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int score;
     [SerializeField] private int lives;
 
+    public static GameManager instance { get; private set; }
     public BallController ball { get; private set; }
     public PaddleController paddle { get; private set; }
     public BrickController[] bricks { get; private set; }
 
     private void Awake()
     {
+        // Ensures only one game manager can exist (singlton)
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+
         // Allows this (game manager) to persist between loading
         DontDestroyOnLoad(this.gameObject);
         // Subscribing to the scene loaded event
