@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static int DEFAULT_START_LEVEL = 1;
+    private static int DEFAULT_MAX_LEVEL = 5;
     private static int DEFAULT_START_SCORE = 0;
     private static int DEFAULT_START_LIVES = 3;
 
@@ -41,7 +42,17 @@ public class GameManager : MonoBehaviour
     {
         this.level = level;
 
-        SceneManager.LoadScene("Level" + level);
+        if (level > DEFAULT_MAX_LEVEL)
+        {
+            // TODO Add win screen
+            // SceneManager.LoadScene("WinScreen");
+        }
+        else
+        {
+            SceneManager.LoadScene("Level" + level);
+        }
+
+        // CHECK make sure to add new levels to file>build settings
     }
 
     private void OnLevelLoad(Scene scene, LoadSceneMode mode)
@@ -92,7 +103,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < this.bricks.Length; i++)
         {
-            if (this.bricks[i].gameObject.activeInHierarchy && this.bricks[i].unbreakable)
+            if (this.bricks[i].gameObject.activeInHierarchy && !this.bricks[i].unbreakable)
             {
                 return false;
             }
