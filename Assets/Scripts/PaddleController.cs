@@ -8,7 +8,7 @@ public class PaddleController : MonoBehaviour
 
     private Rigidbody2D rb2D;
     private Vector2 direction;
-    
+
     private void Awake()
     {
         this.rb2D = GetComponent<Rigidbody2D>();
@@ -18,11 +18,11 @@ public class PaddleController : MonoBehaviour
     private void Update()
     {
         // Detect where the player is moving the paddle
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             this.direction = Vector2.left;
         }
-        else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             this.direction = Vector2.right;
         }
@@ -35,7 +35,7 @@ public class PaddleController : MonoBehaviour
     private void FixedUpdate()
     {
         // Move the paddle
-        if(this.direction != Vector2.zero)
+        if (this.direction != Vector2.zero)
         {
             this.rb2D.AddForce(this.direction * DEFAULT_SPEED);
         }
@@ -46,7 +46,7 @@ public class PaddleController : MonoBehaviour
         BallController ball = collision.gameObject.GetComponent<BallController>();
 
         // Adds variable return angles for ball
-        if(ball != null)
+        if (ball != null)
         {
             Vector2 paddlePos = this.transform.position;
             Vector2 contactPt = collision.GetContact(0).point;
@@ -55,14 +55,16 @@ public class PaddleController : MonoBehaviour
             // Half of total width of paddle (otherCollider)
             float halfWidth = collision.otherCollider.bounds.size.x / 2;
 
+            Rigidbody2D ballRb2D = ball.GetComponent<Rigidbody2D>();
+
             // Find angle of ball using its rigidbody
             // CHECK should this be here?
-            float curAngle = Vector2.SignedAngle(Vector2.up, ball.rb2D.velocity);
+            float curAngle = Vector2.SignedAngle(Vector2.up, ballRb2D.velocity);
             float bounceAngle = (offset / halfWidth) * MAX_BOUNCE_ANGLE;
             float newAngle = Mathf.Clamp(curAngle + bounceAngle, -MAX_BOUNCE_ANGLE, MAX_BOUNCE_ANGLE);
 
             Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
-            ball.rb2D.velocity = rotation * Vector2.up * ball.rb2D.velocity.magnitude;
+            ballRb2D.velocity = rotation * Vector2.up * ballRb2D.velocity.magnitude;
         }
     }
 }

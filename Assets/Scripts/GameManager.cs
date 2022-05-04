@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         // Allows this (game manager) to persist between loading
         DontDestroyOnLoad(this.gameObject);
     }
-    
+
     // Start is called before the first frame update
     private void Start()
     {

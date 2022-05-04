@@ -5,13 +5,13 @@ public class BallController : MonoBehaviour
 {
     private static float DEFAULT_SPEED = 1000f;
 
-    public Rigidbody2D rb2D;
+    private Rigidbody2D rb2D;
 
     private void Awake()
     {
         this.rb2D = GetComponent<Rigidbody2D>();
     }
-    
+
     // Start is called before the first frame update
     private void Start()
     {
