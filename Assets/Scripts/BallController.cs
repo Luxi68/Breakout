@@ -15,6 +15,14 @@ public class BallController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        Reset();
+    }
+
+    public void Reset()
+    { 
+        this.transform.position = Vector2.zero;
+        this.rb2D.velocity = Vector2.zero;
+
         Invoke(nameof(SetRandDirection), 1f);
     }
 

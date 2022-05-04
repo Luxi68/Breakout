@@ -11,10 +11,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int score;
     [SerializeField] private int lives;
 
+    public BallController ball { get; private set; }
+    public PaddleController paddle { get; private set; }
+
     private void Awake()
     {
         // Allows this (game manager) to persist between loading
         DontDestroyOnLoad(this.gameObject);
+        // Subscribing to the scene loaded event
+        SceneManager.sceneLoaded += OnLevelLoad;
     }
 
     // Start is called before the first frame update
@@ -36,6 +41,38 @@ public class GameManager : MonoBehaviour
         this.level = level;
 
         SceneManager.LoadScene("Level" + level);
+    }
+
+    private void OnLevelLoad(Scene scene, LoadSceneMode mode)
+    {
+        this.ball = FindObjectOfType<BallController>();
+        this.paddle = FindObjectOfType<PaddleController>();
+    }
+
+    private void ResetLevel()
+    {
+        this.ball.Reset();
+        this.paddle.Reset();
+    }
+
+    private void GameOver()
+    {
+        // TODO SceneManager.LoadScene("GameOver");
+        NewGame();
+    }
+
+    public void BallDeath()
+    {
+        this.lives--;
+
+        if (this.lives > 0)
+        {
+            ResetLevel();
+        }
+        else
+        {
+            GameOver();
+        }
     }
 
     public void BrickHit(BrickController brick)

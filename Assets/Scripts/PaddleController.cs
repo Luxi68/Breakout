@@ -14,6 +14,12 @@ public class PaddleController : MonoBehaviour
         this.rb2D = GetComponent<Rigidbody2D>();
     }
 
+    public void Reset()
+    {
+        this.transform.position = new Vector2(0f, this.transform.position.y);
+        this.rb2D.velocity = Vector2.zero;
+    }
+
     // Update is called once per frame
     private void Update()
     {
