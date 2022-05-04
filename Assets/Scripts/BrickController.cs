@@ -4,7 +4,7 @@ public class BrickController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] healthStates;
-    private bool unbreakable;
+    public bool unbreakable { get; private set; }
     public int health { get; private set; }
     public int points { get; private set; } = 100;
 

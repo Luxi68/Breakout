@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public BallController ball { get; private set; }
     public PaddleController paddle { get; private set; }
+    public BrickController[] bricks { get; private set; }
 
     private void Awake()
     {
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         this.ball = FindObjectOfType<BallController>();
         this.paddle = FindObjectOfType<PaddleController>();
+        this.bricks = FindObjectsOfType<BrickController>();
     }
 
     private void ResetLevel()
@@ -57,7 +59,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        // TODO SceneManager.LoadScene("GameOver");
+        // TODO make gameover screen
+        // SceneManager.LoadScene("GameOver");
         NewGame();
     }
 
@@ -78,5 +81,22 @@ public class GameManager : MonoBehaviour
     public void BrickHit(BrickController brick)
     {
         this.score += brick.points;
+
+        if (IsCleared())
+        {
+            LoadLevel(this.level + 1);
+        }
+    }
+
+    private bool IsCleared()
+    {
+        for (int i = 0; i < this.bricks.Length; i++)
+        {
+            if (this.bricks[i].gameObject.activeInHierarchy && this.bricks[i].unbreakable)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
