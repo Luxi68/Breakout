@@ -4,8 +4,9 @@ public class BrickController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] healthStates;
-    public int health { get; private set; }
     private bool unbreakable;
+    public int health { get; private set; }
+    public int points { get; private set; } = 100;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class BrickController : MonoBehaviour
             this.spriteRenderer.sprite = this.healthStates[this.health - 1];
         }
 
+        FindObjectOfType<GameManager>().BrickHit(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthStates:
-  - {fileID: 21300000, guid: 600c2607c2bfdc640abb2c293adcf847, type: 3}
+  - {fileID: 21300000, guid: 16d34ffd5c2ede64cb5115ed570fea42, type: 3}
   - {fileID: 21300000, guid: 568461273b90ea54192916c2389400d0, type: 3}
   - {fileID: 21300000, guid: ea25481717b64a941853b621c5b9eb46, type: 3}
   - {fileID: 21300000, guid: 7dcc90582a192e5419281a5448d8071c, type: 3}

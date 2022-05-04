@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
     private static int DEFAULT_START_SCORE = 0;
     private static int DEFAULT_START_LIVES = 3;
 
-    public int level;
-    public int score;
-    public int lives;
+    [SerializeField] private int level;
+    [SerializeField] private int score;
+    [SerializeField] private int lives;
 
     private void Awake()
     {
@@ -36,5 +36,10 @@ public class GameManager : MonoBehaviour
         this.level = level;
 
         SceneManager.LoadScene("Level" + level);
+    }
+
+    public void BrickHit(BrickController brick)
+    {
+        this.score += brick.points;
     }
 }
