@@ -3,7 +3,7 @@ using UnityEngine;
 public class BrickController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    private Sprite[] healthStates;
+    [SerializeField] private Sprite[] healthStates;
     public int health { get; private set; }
     private bool unbreakable;
 
