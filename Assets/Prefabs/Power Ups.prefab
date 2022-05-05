@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5990003772641570152}
   - component: {fileID: 5990003772641570153}
   m_Layer: 8
-  m_Name: Extra Life
+  m_Name: Power Ups
   m_TagString: Power Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,4 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52901aa023ce8394b91b3209d75f8450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUps:
+  - {fileID: 21300000, guid: f9d1719934027e5419b26eb9afcabdeb, type: 3}
+  - {fileID: 21300000, guid: da7961e2e1a08214d97956dc4361e8c5, type: 3}
+  - {fileID: 21300000, guid: 4240ca47eed31fd4cbf3770789cf088f, type: 3}
   powerUpID: 0

@@ -3,15 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PaddleController : MonoBehaviour
 {
-    private static float DEFAULT_SPEED = 60f;
     private static float MAX_BOUNCE_ANGLE = 75f;
-
+    [SerializeField] private float speed;
     private Rigidbody2D rb2D;
     private Vector2 direction;
 
     private void Awake()
     {
         this.rb2D = GetComponent<Rigidbody2D>();
+        this.speed = 60f;
     }
 
     public void Reset()
@@ -43,7 +43,7 @@ public class PaddleController : MonoBehaviour
         // Move the paddle
         if (this.direction != Vector2.zero)
         {
-            this.rb2D.AddForce(this.direction * DEFAULT_SPEED);
+            this.rb2D.AddForce(this.direction * speed);
         }
     }
 
@@ -71,6 +71,18 @@ public class PaddleController : MonoBehaviour
 
             Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
             ballRb2D.velocity = rotation * Vector2.up * ballRb2D.velocity.magnitude;
+        }
+    }
+
+    public void incSpeed()
+    {
+        this.speed += 30f;
+    }
+
+    public void decSpeed()
+    {
+        if(this.speed > 60f) {
+            this.speed -= 30f;
         }
     }
 }

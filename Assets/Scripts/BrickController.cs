@@ -43,7 +43,9 @@ public class BrickController : MonoBehaviour
             Destroy(this.gameObject);
 
             int randNum = Random.Range(1, 101);
-            if (randNum < 30) {
+            if (randNum < 100)
+            {
+                // HACK need to change back when done
                 DropPowerUp(randNum);
             }
         }

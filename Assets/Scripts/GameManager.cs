@@ -134,6 +134,14 @@ public class GameManager : MonoBehaviour
                 this.livesCount.text = lives.ToString();
                 break;
 
+            case 1:
+                this.paddle.incSpeed();
+                break;
+
+            case 2:
+                this.paddle.decSpeed();
+                break;
+
             default:
                 break;
         }
