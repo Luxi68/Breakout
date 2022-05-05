@@ -8,6 +8,11 @@ public class PowerUpController : MonoBehaviour
     private void Update()
     {
         transform.Translate(new Vector2(0f, -1f) * Time.deltaTime * DEFAULT_SPEED);
+
+        if (transform.position.y < -20f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
