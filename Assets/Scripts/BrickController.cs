@@ -4,6 +4,8 @@ public class BrickController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] healthStates;
+    [SerializeField] private Transform powerUp;
+
     public bool unbreakable { get; private set; }
     public int health { get; private set; }
     public int points { get; private set; } = 100;
@@ -22,6 +24,14 @@ public class BrickController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ball")
+        { //HACK Maybe getting the component would be safer?
+            OnHit();
+        }
+    }
+
     private void OnHit()
     {
         if (this.unbreakable) { return; }
@@ -29,7 +39,13 @@ public class BrickController : MonoBehaviour
 
         if (this.health <= 0)
         {
-            this.gameObject.SetActive(false);
+            // this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
+
+            int randNum = Random.Range(1, 101);
+            if (randNum < 30) {
+                DropPowerUp(randNum);
+            }
         }
         else
         {
@@ -39,11 +55,8 @@ public class BrickController : MonoBehaviour
         FindObjectOfType<GameManager>().BrickHit(this);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void DropPowerUp(int num)
     {
-        if (collision.gameObject.name == "Ball")
-        { //HACK Maybe getting the component would be safer?
-            OnHit();
-        }
+        Instantiate(powerUp, this.gameObject.transform.position, this.gameObject.transform.rotation);
     }
 }
