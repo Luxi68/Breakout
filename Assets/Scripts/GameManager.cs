@@ -64,15 +64,12 @@ public class GameManager : MonoBehaviour
 
         if (level > DEFAULT_MAX_LEVEL)
         {
-            // TODO Add win screen
-            // SceneManager.LoadScene("WinScreen");
+            SceneManager.LoadScene("Win");
         }
         else
         {
             SceneManager.LoadScene("Level" + level);
         }
-
-        // CHECK make sure to add new levels to file>build settings
     }
 
     private void OnLevelLoad(Scene scene, LoadSceneMode mode)
@@ -90,9 +87,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        // TODO make gameover screen
         SceneManager.LoadScene("GameOver");
-        // NewGame();
     }
 
     public void BallDeath()
