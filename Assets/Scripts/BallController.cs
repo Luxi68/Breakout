@@ -25,7 +25,8 @@ public class BallController : MonoBehaviour
 
     public void Reset()
     { 
-        this.transform.position = Vector2.zero;
+        // this.transform.position = Vector2.zero;
+        this.transform.position = new Vector2(0f, -13.5f);
         this.rb2D.velocity = Vector2.zero;
 
         Invoke(nameof(SetRandDirection), 1f);
@@ -36,7 +37,7 @@ public class BallController : MonoBehaviour
         Vector2 force = Vector2.zero;
         // Randomise initil diagonal movement
         force.x = Random.Range(-0.5f, 0.5f);
-        force.y = -1f;
+        force.y = 1f;
 
         this.rb2D.AddForce(force.normalized * DEFAULT_SPEED);
     }
