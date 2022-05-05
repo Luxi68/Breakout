@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class GameOverController : MonoBehaviour
 {
-    [SerializeField] private Text finalScoreCount;
     [SerializeField] private Text newHighScore;
+    [SerializeField] private Text newAchievement;
 
     private int finalScore;
 
@@ -13,20 +13,23 @@ public class GameOverController : MonoBehaviour
         GameManager gm = FindObjectOfType<GameManager>();
 
         finalScore = gm.score;
-        this.finalScoreCount.text = finalScore.ToString();
-        newHighScore.enabled = gm.saveData.newHighScore(finalScore);
+        if (gm.saveData.newHighScore(finalScore))
+        {
+            newHighScore.enabled = true;
+            gm.updateHighScore(finalScore);
+        }
 
         saveProgress();
     }
 
     public void NewGame()
     {
-        FindObjectOfType<GameManager>().Start();
+        FindObjectOfType<GameManager>().NewGame();
     }
 
     public void QuitGame()
     {
-        Application.Quit();
+        FindObjectOfType<GameManager>().Start();
     }
 
     private void saveProgress()

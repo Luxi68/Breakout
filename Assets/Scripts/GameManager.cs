@@ -10,19 +10,27 @@ public class GameManager : MonoBehaviour
     private static int DEFAULT_START_LIVES = 3;
 
     [SerializeField] private Text levelCount;
+    [SerializeField] private Text livesCount; 
     [SerializeField] private Text scoreCount;
-    [SerializeField] private Text livesCount;
+    [SerializeField] private Text highScoreCount;
 
     [SerializeField] public int level { get; private set; }
-    [SerializeField] public int score { get; private set; }
     [SerializeField] public int lives { get; private set; }
+    [SerializeField] public int score { get; private set; }
+    [SerializeField] public int highScore { get; private set; }
 
     public static GameManager instance { get; private set; }
-    public GameScores saveData { get; private set; }
+    public GameScores saveData;
 
     public BallController ball { get; private set; }
     public PaddleController paddle { get; private set; }
     public BrickController[] bricks { get; private set; }
+
+    public void updateHighScore(int score)
+    {
+        this.highScore = score;
+        this.highScoreCount.text = highScore.ToString();
+    }
 
     private void Awake()
     {
@@ -38,20 +46,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         // Subscribing to the scene loaded event
         SceneManager.sceneLoaded += OnLevelLoad;
-
-        // Load in save data ie highscores
-        saveData = SaveGameSystem.LoadData("score_data");
-        if (saveData == null)
-        {
-            saveData = new GameScores();
-        }
     }
 
     // Start is called before the first frame update
     public void Start()
     {
         SceneManager.LoadScene("Start");
-        // NewGame();
     }
 
     public void NewGame()
@@ -62,13 +62,14 @@ public class GameManager : MonoBehaviour
         this.scoreCount.text = score.ToString();
         this.livesCount.text = lives.ToString();
 
+        updateHighScore(saveData.highScore);
+
         LoadLevel(DEFAULT_START_LEVEL);
     }
 
     private void LoadLevel(int level)
     {
         this.level = level;
-
         this.levelCount.text = level.ToString();
 
         if (level > DEFAULT_MAX_LEVEL)

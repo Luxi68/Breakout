@@ -3,15 +3,23 @@ using UnityEngine.UI;
 
 public class StartGameController : MonoBehaviour
 {
-    [SerializeField] private Text highScoreCount;
 
     private void Start()
     {
-        this.highScoreCount.text = FindObjectOfType<GameManager>().saveData.highScore.ToString();
+        GameManager gm = FindObjectOfType<GameManager>();
+
+        // Load in save data ie highscores
+        gm.saveData = SaveGameSystem.LoadData("score_data");
+        if (gm.saveData == null)
+        {
+            gm.saveData = new GameScores();
+        }        
     }
 
     public void StartGame()
     {
         FindObjectOfType<GameManager>().NewGame();
     }
+
+    // add quit option
 }
