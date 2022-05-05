@@ -125,6 +125,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PowerUpHit(int powerUpID)
+    {
+        switch (powerUpID)
+        {
+            case 0:
+                this.lives++;
+                this.livesCount.text = lives.ToString();
+                break;
+
+            default:
+                break;
+        }
+    }
+
     private bool IsCleared()
     {
         for (int i = 0; i < this.bricks.Length; i++)
