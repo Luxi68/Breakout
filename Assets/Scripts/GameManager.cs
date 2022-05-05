@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreCount;
     [SerializeField] private Text livesCount;
 
-    [SerializeField] private int level;
-    [SerializeField] private int score;
-    [SerializeField] private int lives;
+    [SerializeField] public int level { get; private set; }
+    [SerializeField] public int score { get; private set; }
+    [SerializeField] public int lives { get; private set; }
 
     public static GameManager instance { get; private set; }
     public BallController ball { get; private set; }
@@ -41,8 +41,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        SceneManager.LoadScene("Start");
-        // NewGame();
+        // SceneManager.LoadScene("Start");
+        NewGame();
     }
 
     public void NewGame()

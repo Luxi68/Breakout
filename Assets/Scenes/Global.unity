@@ -825,9 +825,6 @@ MonoBehaviour:
   levelCount: {fileID: 970251036}
   scoreCount: {fileID: 354368296}
   livesCount: {fileID: 1605860739}
-  level: 1
-  score: 0
-  lives: 3
 --- !u!1 &1565926981
 GameObject:
   m_ObjectHideFlags: 0
