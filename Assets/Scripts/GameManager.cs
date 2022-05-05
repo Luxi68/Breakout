@@ -41,8 +41,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        // SceneManager.LoadScene("Start");
-        NewGame();
+        SceneManager.LoadScene("Start");
+        // NewGame();
     }
 
     public void NewGame()
