@@ -7,8 +7,7 @@ public class StartGameController : MonoBehaviour
 
     private void Start()
     {
-        // TODO implement properly
-        this.highScoreCount.text = "100000";
+        this.highScoreCount.text = FindObjectOfType<GameManager>().saveData.highScore.ToString();
     }
 
     public void StartGame()

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private static int DEFAULT_MAX_LEVEL = 5;
     private static int DEFAULT_START_SCORE = 0;
     private static int DEFAULT_START_LIVES = 3;
-    
+
     [SerializeField] private Text levelCount;
     [SerializeField] private Text scoreCount;
     [SerializeField] private Text livesCount;
@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int lives { get; private set; }
 
     public static GameManager instance { get; private set; }
+    public GameScores saveData { get; private set; }
+
     public BallController ball { get; private set; }
     public PaddleController paddle { get; private set; }
     public BrickController[] bricks { get; private set; }
@@ -36,10 +38,17 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         // Subscribing to the scene loaded event
         SceneManager.sceneLoaded += OnLevelLoad;
+
+        // Load in save data ie highscores
+        saveData = SaveGameSystem.LoadData("score_data");
+        if (saveData == null)
+        {
+            saveData = new GameScores();
+        }
     }
 
     // Start is called before the first frame update
-    private void Start()
+    public void Start()
     {
         SceneManager.LoadScene("Start");
         // NewGame();
