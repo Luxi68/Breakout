@@ -35,7 +35,7 @@ public class BallController : MonoBehaviour
     {
         Vector2 force = Vector2.zero;
         // Randomise initil diagonal movement
-        force.x = Random.Range(-1f, 1f);
+        force.x = Random.Range(-0.5f, 0.5f);
         force.y = -1f;
 
         this.rb2D.AddForce(force.normalized * DEFAULT_SPEED);
