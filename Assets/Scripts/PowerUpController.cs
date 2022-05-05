@@ -14,8 +14,9 @@ public class PowerUpController : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            this.gameObject.SetActive(false);
             FindObjectOfType<GameManager>().PowerUpHit(powerUpID);
+            // this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
 }
