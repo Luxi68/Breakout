@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         // NewGame();
     }
 
-    private void NewGame()
+    public void NewGame()
     {
         this.score = DEFAULT_START_SCORE;
         this.lives = DEFAULT_START_LIVES;
@@ -91,8 +91,8 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         // TODO make gameover screen
-        // SceneManager.LoadScene("GameOver");
-        NewGame();
+        SceneManager.LoadScene("GameOver");
+        // NewGame();
     }
 
     public void BallDeath()
