@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -7,6 +8,10 @@ public class GameManager : MonoBehaviour
     private static int DEFAULT_MAX_LEVEL = 5;
     private static int DEFAULT_START_SCORE = 0;
     private static int DEFAULT_START_LIVES = 3;
+    
+    [SerializeField] private Text levelCount;
+    [SerializeField] private Text scoreCount;
+    [SerializeField] private Text livesCount;
 
     [SerializeField] private int level;
     [SerializeField] private int score;
@@ -44,12 +49,17 @@ public class GameManager : MonoBehaviour
         this.score = DEFAULT_START_SCORE;
         this.lives = DEFAULT_START_LIVES;
 
+        this.scoreCount.text = score.ToString();
+        this.livesCount.text = lives.ToString();
+
         LoadLevel(DEFAULT_START_LEVEL);
     }
 
     private void LoadLevel(int level)
     {
         this.level = level;
+
+        this.levelCount.text = level.ToString();
 
         if (level > DEFAULT_MAX_LEVEL)
         {
@@ -87,6 +97,7 @@ public class GameManager : MonoBehaviour
     public void BallDeath()
     {
         this.lives--;
+        this.livesCount.text = lives.ToString();
 
         if (this.lives > 0)
         {
@@ -101,6 +112,7 @@ public class GameManager : MonoBehaviour
     public void BrickHit(BrickController brick)
     {
         this.score += brick.points;
+        this.scoreCount.text = score.ToString();
 
         if (IsCleared())
         {
