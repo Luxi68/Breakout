@@ -12,6 +12,7 @@ public class GameOverController : MonoBehaviour
         GameManager gm = FindObjectOfType<GameManager>();
 
         finalScore = gm.score;
+        newHighScore.enabled = false;
         if (gm.saveData.newHighScore(finalScore))
         {
             newHighScore.enabled = true;

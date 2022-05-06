@@ -66,11 +66,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        this.gameObject.GetComponentInChildren<Canvas>().enabled = false;
         SceneManager.LoadScene("Start");
     }
 
     public void NewGame()
     {
+        this.gameObject.GetComponentInChildren<Canvas>().enabled = true;
+
         this.score = DEFAULT_START_SCORE;
         this.lives = DEFAULT_START_LIVES;
 
@@ -89,6 +92,7 @@ public class GameManager : MonoBehaviour
 
         if (level > DEFAULT_MAX_LEVEL)
         {
+            // this.gameObject.GetComponentInChildren<Canvas>().enabled = false;
             SceneManager.LoadScene("Win");
         }
         else
@@ -112,6 +116,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        // this.gameObject.GetComponentInChildren<Canvas>().enabled = false;
         SceneManager.LoadScene("GameOver");
     }
 
