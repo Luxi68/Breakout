@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +34,7 @@ public class AchievementManager : MonoBehaviour
         for (; ; )
         {
             if (achievementQ.Count > 0) UnlockAchievement(achievementQ.Dequeue());
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(2f);
             this.newAchievement.enabled = false;
         }
     }

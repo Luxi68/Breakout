@@ -64,7 +64,6 @@ public class PaddleController : MonoBehaviour
             Rigidbody2D ballRb2D = ball.GetComponent<Rigidbody2D>();
 
             // Find angle of ball using its rigidbody
-            // CHECK should this be here?
             float curAngle = Vector2.SignedAngle(Vector2.up, ballRb2D.velocity);
             float bounceAngle = (offset / halfWidth) * MAX_BOUNCE_ANGLE;
             float newAngle = Mathf.Clamp(curAngle + bounceAngle, -MAX_BOUNCE_ANGLE, MAX_BOUNCE_ANGLE);
