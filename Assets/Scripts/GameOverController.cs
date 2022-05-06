@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class GameOverController : MonoBehaviour
 {
     [SerializeField] private Text newHighScore;
-    [SerializeField] private Text newAchievement;
 
     private int finalScore;
 

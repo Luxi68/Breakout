@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text livesCount; 
     [SerializeField] private Text scoreCount;
     [SerializeField] private Text highScoreCount;
+    
 
     [SerializeField] public int level { get; private set; }
     [SerializeField] public int lives { get; private set; }
@@ -26,10 +28,17 @@ public class GameManager : MonoBehaviour
     public PaddleController paddle { get; private set; }
     public BrickController[] bricks { get; private set; }
 
+    public static event Action<int> UnlockFirstScoreAchievement;
+
     public void updateHighScore(int score)
     {
         this.highScore = score;
         this.highScoreCount.text = highScore.ToString();
+    }
+
+    public void updateAchievements(int id)
+    {
+        FindObjectOfType<AchievementNotification>().NotifyAchievementComplete(id.ToString());
     }
 
     private void Awake()
@@ -120,6 +129,12 @@ public class GameManager : MonoBehaviour
         this.score += brick.points;
         this.scoreCount.text = score.ToString();
 
+        if(this.score == 200)
+        {
+            Debug.Log("score equalled");
+            UnlockFirstScoreAchievement?.Invoke(0);
+        }
+           
         if (IsCleared())
         {
             LoadLevel(this.level + 1);
