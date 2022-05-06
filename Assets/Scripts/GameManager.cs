@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text livesCount; 
     [SerializeField] private Text scoreCount;
     [SerializeField] private Text highScoreCount;
+    [SerializeField] private Text username;
     
 
     [SerializeField] public int level { get; private set; }
@@ -70,6 +71,23 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Start");
     }
 
+    public void NewPlayer()
+    {
+        SceneManager.LoadScene("NewPlayer");
+    }
+
+    public void CreateNewPlayer(string username)
+    {
+        this.saveData = new SaveData(username);
+        SaveGameSystem.SaveData(this.saveData, username);
+        NewGame();
+    }
+
+    public void ReturningPlayer()
+    {
+        
+    }
+
     public void NewGame()
     {
         this.gameObject.GetComponentInChildren<Canvas>().enabled = true;
@@ -81,6 +99,7 @@ public class GameManager : MonoBehaviour
         this.livesCount.text = lives.ToString();
 
         updateHighScore(saveData.highScore);
+        this.username.text = this.saveData.username;
 
         LoadLevel(DEFAULT_START_LEVEL);
     }
@@ -140,9 +159,9 @@ public class GameManager : MonoBehaviour
         this.score += brick.points;
         this.scoreCount.text = score.ToString();
 
-        if(this.score == 200) updateAchievements(0);
-        if(this.score == 800) updateAchievements(1);
-        if(this.score == 1600) updateAchievements(2);
+        if(this.score == 400) updateAchievements(0);
+        if(this.score == 1600) updateAchievements(1);
+        if(this.score == 2400) updateAchievements(2);
         
            
         if (IsCleared())

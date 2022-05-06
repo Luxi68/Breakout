@@ -1,19 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 [Serializable]
 public class SaveData
 {
+    public string username { get; private set; }
+
     public int highScore { get; private set; }
+
     public Achievement[] achievementList { get; private set; }
     public int unlockLevel;
 
-    public SaveData()
+    public SaveData(string username)
     {
+        this.username = username;
         this.highScore = 0;
-        achievementList = new Achievement[3];
-        unlockLevel = 0;
+        this.achievementList = new Achievement[3];
+        this.unlockLevel = 0;
     }
 
     public bool newHighScore(int score)

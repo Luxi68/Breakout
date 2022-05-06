@@ -34,8 +34,9 @@ public class GameOverController : MonoBehaviour
 
     private void saveProgress()
     {
-        SaveGameSystem.DeleteSaveData("score_data");
-        SaveGameSystem.SaveData(FindObjectOfType<GameManager>().saveData, "score_data");
+        GameManager gm = FindObjectOfType<GameManager>();
+        SaveGameSystem.DeleteSaveData(gm.saveData.username);
+        SaveGameSystem.SaveData(gm.saveData, gm.saveData.username);
     }
 }
 
