@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         if (achievement != null)
         {
             // FindObjectOfType<PowerUpController>().unlockLevel = id + 1;
-            FindObjectOfType<AchievementNotification>().NotifyAchievementComplete(achievement);
+            FindObjectOfType<AchievementManager>().NotifyAchievementComplete(achievement);
         }
     }
 

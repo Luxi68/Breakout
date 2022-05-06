@@ -42,3 +42,4 @@ public class BallController : MonoBehaviour
         this.rb2D.AddForce(force.normalized * DEFAULT_SPEED);
     }
 }
+
