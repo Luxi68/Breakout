@@ -12,7 +12,7 @@ public class StartGameController : MonoBehaviour
         gm.saveData = SaveGameSystem.LoadData("score_data");
         if (gm.saveData == null)
         {
-            gm.saveData = new GameScores();
+            gm.saveData = new SaveData();
         }        
     }
 

@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveGameSystem
 {
-    public static bool SaveData(GameScores saveGame, string name)
+    public static bool SaveData(SaveData saveGame, string name)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
@@ -24,7 +24,7 @@ public static class SaveGameSystem
         return true;
     }
 
-    public static GameScores LoadData(string name)
+    public static SaveData LoadData(string name)
     {
         if (!DoesSaveDataExist(name))
         {
@@ -37,7 +37,7 @@ public static class SaveGameSystem
         {
             try
             {
-                GameScores myData = formatter.Deserialize(stream) as GameScores;
+                SaveData myData = formatter.Deserialize(stream) as SaveData;
                 return myData;
             }
             catch (System.Exception)

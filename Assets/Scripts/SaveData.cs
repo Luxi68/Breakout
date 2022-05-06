@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 [Serializable]
-public class GameScores
+public class SaveData
 {
     public int highScore { get; private set; }
+    public Achievement[] achievementList { get; private set; }
 
-    public GameScores()
+    public SaveData()
     {
         this.highScore = 0;
+        achievementList = new Achievement[3];
     }
 
     public bool newHighScore(int score)
@@ -21,6 +23,35 @@ public class GameScores
         }
 
         return false;
+    }
+
+    public Achievement addNewAchievement(int id)
+    {
+        if (achievementList[id] == null)
+        {
+            string description;
+            switch (id)
+            {
+                case 0:
+                    description = "Running out of lives? Unlock extra lives.";
+                    break;
+
+                case 1:
+                    description = "Lets make this harder. Unlock paddle speed up.";
+                    break;
+
+                case 2:
+                    description = "Too Fast? Unlock paddle speed down.";
+                    break;
+
+                default:
+                    return null;
+            }
+            Achievement achievement = new Achievement(id, description);
+            achievementList[id] = achievement;
+            return achievement;
+        }
+        return null;
     }
 }
 

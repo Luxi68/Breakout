@@ -22,13 +22,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int highScore { get; private set; }
 
     public static GameManager instance { get; private set; }
-    public GameScores saveData;
+    public SaveData saveData;
 
     public BallController ball { get; private set; }
     public PaddleController paddle { get; private set; }
     public BrickController[] bricks { get; private set; }
 
-    public static event Action<int> UnlockFirstScoreAchievement;
+    public static event Action<int> UnlockScoreAchievement;
 
     public void updateHighScore(int score)
     {
@@ -38,7 +38,12 @@ public class GameManager : MonoBehaviour
 
     public void updateAchievements(int id)
     {
-        FindObjectOfType<AchievementNotification>().NotifyAchievementComplete(id.ToString());
+        Achievement achievement = saveData.addNewAchievement(id);
+        
+        if (achievement != null)
+        {
+            FindObjectOfType<AchievementNotification>().NotifyAchievementComplete(achievement);
+        }
     }
 
     private void Awake()
@@ -132,7 +137,7 @@ public class GameManager : MonoBehaviour
         if(this.score == 200)
         {
             Debug.Log("score equalled");
-            UnlockFirstScoreAchievement?.Invoke(0);
+            UnlockScoreAchievement?.Invoke(0);
         }
            
         if (IsCleared())

@@ -4,16 +4,17 @@ public class AchievementManager : MonoBehaviour
 {
     private void Start()
     {
-        GameManager.UnlockFirstScoreAchievement += CheckAchievement;
+        GameManager.UnlockScoreAchievement += CheckAchievement;
     }
 
     private void OnDisable()
     {
-        GameManager.UnlockFirstScoreAchievement -= CheckAchievement;
+        GameManager.UnlockScoreAchievement -= CheckAchievement;
     }
 
     private void CheckAchievement(int id)
     {
+        // TODO check for negatives ect
         Debug.Log("Checking Achievement: "+ id);
         FindObjectOfType<GameManager>().updateAchievements(id);
         //lookup the id and startcourtine

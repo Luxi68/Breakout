@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class AchievementNotification : MonoBehaviour
 {
     [SerializeField] private Text newAchievement;
-    private Queue<Achievements> achievementQ = new Queue<Achievements>();
+    private Queue<Achievement> achievementQ = new Queue<Achievement>();
     
-    public void NotifyAchievementComplete(string ID)
+    public void NotifyAchievementComplete(Achievement achievement)
     {
-        achievementQ.Enqueue(new Achievements(ID));
+        achievementQ.Enqueue(achievement);
     }
 
     private void Awake()
@@ -23,10 +23,11 @@ public class AchievementNotification : MonoBehaviour
         StartCoroutine("AchievementQueCheck");
     }
 
-    private void UnlockAchievement(Achievements achievement)
+    private void UnlockAchievement(Achievement achievement)
     {
+        this.newAchievement.text = achievement.description;
         this.newAchievement.enabled = true;
-        Debug.Log("Achievement unlocked: " + achievement.ID);
+        Debug.Log("Achievement unlocked: " + achievement.id);
     }
 
     private IEnumerator AchievementQueCheck()
