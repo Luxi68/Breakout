@@ -13,7 +13,7 @@ public class StartGameController : MonoBehaviour
         if (gm.saveData == null)
         {
             gm.saveData = new SaveData();
-        }        
+        }
     }
 
     public void StartGame()
@@ -21,5 +21,18 @@ public class StartGameController : MonoBehaviour
         FindObjectOfType<GameManager>().NewGame();
     }
 
-    // add quit option
+    public void NewPlayer()
+    {
+
+    }
+
+    public void ReturningPlayer()
+    {
+        
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
