@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     public void ReturningPlayer()
     {
-        
+        SceneManager.LoadScene("ReturnPlayer");
     }
 
     public void NewGame()

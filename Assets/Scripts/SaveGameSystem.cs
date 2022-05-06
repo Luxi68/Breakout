@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveGameSystem
@@ -69,6 +70,23 @@ public static class SaveGameSystem
     public static string GetSavePath(string name)
     {
         return Path.Combine(Application.persistentDataPath, name + ".sav");
+    }
+
+    public static List<string> GetAllUsers()
+    {
+        List<string> allUsers = new List<string>();
+
+        string folder = Application.persistentDataPath;
+        DirectoryInfo d = new DirectoryInfo(folder);
+        FileInfo[] Files = d.GetFiles("*.sav");
+
+        foreach(FileInfo file in Files )
+        {
+            string name = file.Name.Substring(0, file.Name.IndexOf("."));
+            allUsers.Add(name);
+        }
+
+        return allUsers;
     }
 
 }

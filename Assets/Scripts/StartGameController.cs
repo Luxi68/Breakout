@@ -1,5 +1,5 @@
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class StartGameController : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class StartGameController : MonoBehaviour
 
     public void ReturningPlayer()
     {
-        
+        FindObjectOfType<GameManager>().ReturningPlayer();
     }
 
     public void QuitGame()
