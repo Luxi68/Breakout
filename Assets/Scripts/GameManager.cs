@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private bool IsCleared()
+    public bool IsCleared()
     {
         for (int i = 0; i < this.bricks.Length; i++)
         {

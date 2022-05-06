@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class StartGameController : MonoBehaviour
 {
-
-    private void Start()
-    {
-    }
-
     public void NewPlayer()
     {
         FindObjectOfType<GameManager>().NewPlayer();

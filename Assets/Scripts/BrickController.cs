@@ -27,7 +27,7 @@ public class BrickController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Ball")
-        { //HACK Maybe getting the component would be safer?
+        {
             OnHit();
         }
     }
@@ -43,9 +43,8 @@ public class BrickController : MonoBehaviour
             Destroy(this.gameObject);
 
             int randNum = Random.Range(1, 101);
-            if (randNum < 100)
+            if (randNum < 30)
             {
-                // HACK need to change back when done
                 DropPowerUp(randNum);
             }
         }
