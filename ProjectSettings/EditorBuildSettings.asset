@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NewPlayer.unity
     guid: 28b0be4dcd7d371459e9e00fc4586b75
   - enabled: 1
+    path: Assets/Scenes/ReturnPlayer.unity
+    guid: fd296ec9104507f40808e6c98240fd20
+  - enabled: 1
     path: Assets/Scenes/Win.unity
     guid: 4ec3dcb65d913f243993a77ac1805ae1
   - enabled: 1

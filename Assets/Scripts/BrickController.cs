@@ -6,7 +6,7 @@ public class BrickController : MonoBehaviour
     [SerializeField] private Sprite[] healthStates;
     [SerializeField] private Transform powerUp;
 
-    public bool unbreakable { get; private set; }
+    [SerializeField] public bool unbreakable;
     public int health { get; private set; }
     public int points { get; private set; } = 100;
 
