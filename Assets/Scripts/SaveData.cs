@@ -7,11 +7,13 @@ public class SaveData
 {
     public int highScore { get; private set; }
     public Achievement[] achievementList { get; private set; }
+    public int unlockLevel;
 
     public SaveData()
     {
         this.highScore = 0;
         achievementList = new Achievement[3];
+        unlockLevel = 0;
     }
 
     public bool newHighScore(int score)
@@ -33,15 +35,15 @@ public class SaveData
             switch (id)
             {
                 case 0:
-                    description = "Running out of lives? Unlock extra lives.";
+                    description = "Running out of lives? Unlocked extra lives.";
                     break;
 
                 case 1:
-                    description = "Lets make this harder. Unlock paddle speed up.";
+                    description = "Lets make this harder. Unlocked paddle speed up.";
                     break;
 
                 case 2:
-                    description = "Too Fast? Unlock paddle speed down.";
+                    description = "Too Fast? Unlocked paddle speed down.";
                     break;
 
                 default:
@@ -49,6 +51,7 @@ public class SaveData
             }
             Achievement achievement = new Achievement(id, description);
             achievementList[id] = achievement;
+            unlockLevel++;
             return achievement;
         }
         return null;

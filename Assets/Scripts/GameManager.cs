@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public PaddleController paddle { get; private set; }
     public BrickController[] bricks { get; private set; }
 
-    public static event Action<int> UnlockScoreAchievement;
+    // public static event Action<int> UnlockScoreAchievement;
 
     public void updateHighScore(int score)
     {
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         
         if (achievement != null)
         {
+            // FindObjectOfType<PowerUpController>().unlockLevel = id + 1;
             FindObjectOfType<AchievementNotification>().NotifyAchievementComplete(achievement);
         }
     }
@@ -134,11 +135,10 @@ public class GameManager : MonoBehaviour
         this.score += brick.points;
         this.scoreCount.text = score.ToString();
 
-        if(this.score == 200)
-        {
-            Debug.Log("score equalled");
-            UnlockScoreAchievement?.Invoke(0);
-        }
+        if(this.score == 200) updateAchievements(0);
+        if(this.score == 800) updateAchievements(1);
+        if(this.score == 1600) updateAchievements(2);
+        
            
         if (IsCleared())
         {

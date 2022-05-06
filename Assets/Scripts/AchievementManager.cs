@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
-    private void Start()
-    {
-        GameManager.UnlockScoreAchievement += CheckAchievement;
-    }
+    // private void Start()
+    // {
+    //     GameManager.UnlockScoreAchievement += CheckAchievement;
+    // }
 
-    private void OnDisable()
-    {
-        GameManager.UnlockScoreAchievement -= CheckAchievement;
-    }
+    // private void OnDisable()
+    // {
+    //     GameManager.UnlockScoreAchievement -= CheckAchievement;
+    // }
 
     private void CheckAchievement(int id)
     {

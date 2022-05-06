@@ -6,11 +6,21 @@ public class PowerUpController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] powerUps;
     [SerializeField] private int powerUpID;
+    public int unlockLevel;
 
     private void Awake()
     {
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
-        this.powerUpID = Random.Range(0, powerUps.Length);
+        unlockLevel = FindObjectOfType<GameManager>().saveData.unlockLevel;
+        Debug.Log(unlockLevel);
+        if (unlockLevel == 0)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            this.spriteRenderer = GetComponent<SpriteRenderer>();
+            this.powerUpID = Random.Range(0, unlockLevel);
+        }
     }
 
     private void Start()
